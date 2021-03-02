@@ -86,9 +86,6 @@ const CustomStyle = ({
   const draw = (p5) => {
     p5.textFont('Sawarabi Mincho');
     p5.background('#ffffff');
-    const mappedTo = transactions.map(x => x.to);
-    const makerTransactions = mappedTo.filter( to => to === "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2");
-    const isMakerBlock = makerTransactions.length > 10
 
     let seed = parseInt(hash.slice(0, 16), 16);
 
@@ -107,21 +104,13 @@ const CustomStyle = ({
     p5.textSize(220 * mod1);
     p5.translate(height / 2, width / 2);
     p5.scale(0.8 + 3 * mod2)
-    if(isMakerBlock){
-      p5.fill(160);
-      for (var i = 0; i < randomN * 6; i++) {
-        p5.rotate(angle/2);
-        p5.text(kanji[kanjiIndex], 80, 100);
-      }
-    }
+
     for (var i = 0; i < randomN * 3; i++) {
       p5.fill(80);
       p5.rotate(angle);
       p5.text(kanji[kanjiIndex], coordinate, coordinate);
     }
-    if(!isMakerBlock){
-      p5.rotate(p5.PI);
-    }
+    p5.rotate(p5.PI);
     p5.fill(col.r, col.g, col.b);
     p5.text(kanji[kanjiIndex], coordinate, coordinate);
     
@@ -133,7 +122,7 @@ const CustomStyle = ({
 export default CustomStyle;
 
 const styleMetadata = {
-  name: 'Kanji Chain',
+  name: 'Kanji Flower',
   description: 'Meet the Beauty of "Kanji", the Japanese characters with a randomness of blockchain. A block with certain amount of of MakerDao related transactions have special effect.',
   image: '',
   creator_name: 'Kenta Suhara, Daiki Kunii',
